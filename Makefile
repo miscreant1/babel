@@ -87,7 +87,7 @@ test-only:
 test: lint test-only
 
 test-ci: bootstrap
-	BABEL_ENV=test yarn jest --maxWorkers=4 --ci
+	BABEL_ENV=test yarn jest --ci
 	make test-clean
 
 # Does not work on Windows

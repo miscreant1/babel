@@ -9,11 +9,6 @@ if [ "$TEST_DEBUG" ]; then
   jestArgs+=("--runInBand")
 fi
 
-if [ -n "$CI" ]; then
-  jestArgs+=("--maxWorkers=4")
-  jestArgs+=("--ci")
-fi
-
 if [ -n "$TEST_GREP" ]; then
   jestArgs+=("-t")
   jestArgs+=("$TEST_GREP")
