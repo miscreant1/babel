@@ -2,12 +2,12 @@
  * Basic declarations for the npm modules we use.
  */
 
-declare module "resolve" {
-  declare export default {
-    (string, {| basedir: string |}, (err: ?Error, res: string) => void): void;
-    sync: (string, {| basedir: string |}) => string;
-  };
-}
+// This should be handled directly by the built-in flow type definitions,
+// but it isn't
+declare var require: {
+  resolve: (id: string, options?: { paths: string[] }) => string,
+  ...
+};
 
 declare module "json5" {
   declare export default {

@@ -14,7 +14,7 @@ EMPTY :=
 SPACE := $(EMPTY) $(EMPTY)
 COMMA_SEPARATED_SOURCES = $(subst $(SPACE),$(COMMA),$(SOURCES))
 
-YARN := yarn --silent
+YARN := yarn
 NODE := $(YARN) node
 
 
@@ -258,11 +258,9 @@ publish-eslint:
 bootstrap-only: lerna-bootstrap
 
 yarn-install: clean-all
-	yarn --ignore-engines
+	yarn
 
 lerna-bootstrap: yarn-install
-# todo: remove `-- -- --ignore-engines` in Babel 8
-	$(YARN) lerna bootstrap -- -- --ignore-engines
 
 bootstrap: bootstrap-only
 	$(MAKE) build

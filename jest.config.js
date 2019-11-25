@@ -39,6 +39,8 @@ module.exports = {
     "<rootDir>/test/warning\\.js",
     "<rootDir>/build/",
     "_browser\\.js",
+    "<rootDir>/eslint/babel-eslint-plugin",
+    "<rootDir>/eslint/babel-eslint-parser",
   ],
   testEnvironment: "node",
   setupFilesAfterEnv: ["<rootDir>/test/testSetupFile.js"],
@@ -48,6 +50,7 @@ module.exports = {
     "<rootDir>/packages/babel-preset-env-standalone/babel-preset-env(\\.min)?\\.js",
     "/test/(fixtures|tmp|__data__)/",
     "<rootDir>/(packages|codemods|eslint)/[^/]+/lib/",
+    "<rootDir>/.pnp.js"
   ],
   coveragePathIgnorePatterns: [
     "/node_modules/",

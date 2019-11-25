@@ -90,6 +90,7 @@ module.exports = function(api) {
       ignoreLib ? "packages/*/lib" : null,
       "packages/babel-standalone/babel.js",
       "packages/babel-preset-env-standalone/babel-preset-env.js",
+      ".pnp.js"
     ].filter(Boolean),
     presets: [["@babel/env", envOpts]],
     plugins: [

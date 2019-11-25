@@ -19,7 +19,9 @@ const rollupJson = require("@rollup/plugin-json");
 const rollupNodeBuiltins = require("rollup-plugin-node-builtins");
 const rollupNodeGlobals = require("rollup-plugin-node-globals");
 const rollupNodeResolve = require("rollup-plugin-node-resolve");
+const rollupPnpResolve = require("rollup-plugin-pnp-resolve");
 const rollupReplace = require("rollup-plugin-replace");
+const rollupStripShebang = require("rollup-plugin-strip-shebang");
 const { terser: rollupTerser } = require("rollup-plugin-terser");
 
 const defaultSourcesGlob = "./@(codemods|packages|eslint)/*/src/**/*.js";
@@ -150,8 +152,9 @@ function buildRollup(packages) {
         return rollup
           .rollup({
             input,
-            external: inputExternal,
+            external: [...inputExternal || [], "pnpapi"],
             plugins: [
+              rollupStripShebang(),
               ...extraPlugins,
               rollupBabelSource(),
               rollupReplace({
@@ -164,6 +167,7 @@ function buildRollup(packages) {
                 babelrc: false,
                 extends: "./babel.config.js",
               }),
+              rollupPnpResolve(),
               rollupNodeResolve({
                 browser: nodeResolveBrowser,
                 preferBuiltins: true,
@@ -189,7 +193,7 @@ function buildRollup(packages) {
                   "packages/babel-compat-data/*.js",
                 ],
                 namedExports: {
-                  "babel-plugin-dynamic-import-node/utils.js": [
+                  [require("pnpapi").resolveRequest("babel-plugin-dynamic-import-node/utils.js", "packages/babel-plugin-transform-modules-commonjs/src/index.js")]: [
                     "createDynamicImportTransform",
                     "getImportSource",
                   ],
