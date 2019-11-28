@@ -1,3 +1,3 @@
-require("@babel/register").default({
+require("../../..").default({
   ignore: false
 });
