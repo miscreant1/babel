@@ -8,11 +8,13 @@ import getCoreJS2Definitions from "./runtime-corejs2-definitions";
 import getCoreJS3Definitions from "./runtime-corejs3-definitions";
 import { typeAnnotationToString } from "./helpers";
 
+const resolveRelative = process.versions.pnp
+  ? require("pnpapi").resolveRequest
+  : (filename, basedir) => resolve.sync(filename, { basedir });
+
 function resolveAbsoluteRuntime(moduleName: string, dirname: string) {
   try {
-    return path.dirname(
-      resolve.sync(`${moduleName}/package.json`, { basedir: dirname }),
-    );
+    return path.dirname(resolveRelative(`${moduleName}/package.json`, dirname));
   } catch (err) {
     if (err.code !== "MODULE_NOT_FOUND") throw err;
 
