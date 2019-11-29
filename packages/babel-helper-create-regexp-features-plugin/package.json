@@ -22,7 +22,7 @@
     "regexpu-core": "^4.6.0"
   },
   "peerDependencies": {
-    "@babel/core": "workspace:*"
+    "@babel/core": "^7.0.0-0"
   },
   "devDependencies": {
     "@babel/core": "workspace:*",
