@@ -114,7 +114,7 @@ describe("@babel/register", function() {
     setupRegister({
       babelrc: false,
       sourceMaps: false,
-      plugins: ["@babel/transform-modules-commonjs"],
+      plugins: [require.resolve("@babel/plugin-transform-modules-commonjs")],
     });
 
     const result = currentHook(testFileContent, testFile);
