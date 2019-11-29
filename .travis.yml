@@ -34,8 +34,6 @@ matrix:
       node_js: "node"
       env:
         - JOB=test
-        # https://travis-ci.community/t/build-doesnt-finish-after-completing-tests/288/9
-        - YARN_GPG=no
     # Continue node_js matrix
     - node_js: "6"
     - node_js: "10"
