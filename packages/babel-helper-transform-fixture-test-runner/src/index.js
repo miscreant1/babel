@@ -19,11 +19,6 @@ import checkDuplicatedNodes from "babel-check-duplicated-nodes";
 
 import diff from "jest-diff";
 
-let pnp;
-try {
-  pnp = require("pnpapi");
-} catch {}
-
 const moduleCache = {};
 const testContext = vm.createContext({
   ...helpers,
@@ -49,8 +44,8 @@ runCodeInTestContext(buildExternalHelpers(), {
 // yarn pnp + resolve: claimed working https://github.com/yarnpkg/yarn/pull/6816
 // yarn pnp + jest + resolve: broken
 function resolveSync(importee, options) {
-  if (pnp) {
-    return pnp.resolveRequest(importee, options.basedir + "/");
+  if (process.versions.pnp) {
+    return require("pnpapi").resolveRequest(importee, options.basedir + "/");
   } else {
     return resolve.sync(importee, options);
   }
