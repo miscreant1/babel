@@ -3,6 +3,7 @@
   "private": true,
   "license": "MIT",
   "type": "commonjs",
+  "exports": false,
   "scripts": {
     "bootstrap": "make bootstrap",
     "build": "make build",

@@ -6,6 +6,7 @@
   "author": "Jed Watson",
   "license": "MIT",
   "type": "commonjs",
+  "exports": false,
   "publishConfig": {
     "access": "public"
   },

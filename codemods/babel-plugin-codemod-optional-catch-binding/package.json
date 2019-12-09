@@ -5,6 +5,7 @@
   "repository": "https://github.com/babel/babel/tree/master/codemods/babel-plugin-codemod-remove-unused-catch-binding",
   "license": "MIT",
   "type": "commonjs",
+  "exports": false,
   "publishConfig": {
     "access": "public"
   },

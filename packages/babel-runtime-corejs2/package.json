@@ -4,6 +4,7 @@
   "description": "babel's modular runtime helpers with core-js@2 polyfilling",
   "license": "MIT",
   "type": "commonjs",
+  "exports": false,
   "publishConfig": {
     "access": "public"
   },

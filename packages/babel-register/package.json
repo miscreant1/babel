@@ -4,6 +4,7 @@
   "description": "babel require hook",
   "license": "MIT",
   "type": "commonjs",
+  "exports": false,
   "publishConfig": {
     "access": "public"
   },

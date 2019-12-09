@@ -5,6 +5,7 @@
   "homepage": "https://babeljs.io/",
   "license": "MIT",
   "type": "commonjs",
+  "exports": false,
   "publishConfig": {
     "access": "public"
   },

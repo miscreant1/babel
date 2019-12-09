@@ -4,6 +4,7 @@
   "author": "Logan Smyth <loganfsmyth@gmail.com>",
   "license": "MIT",
   "type": "commonjs",
+  "exports": false,
   "publishConfig": {
     "access": "public"
   },

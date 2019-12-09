@@ -6,6 +6,7 @@
   "repository": "https://github.com/babel/babel/tree/master/packages/babel-preset-flow",
   "license": "MIT",
   "type": "commonjs",
+  "exports": false,
   "publishConfig": {
     "access": "public"
   },

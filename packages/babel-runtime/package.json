@@ -4,6 +4,7 @@
   "description": "babel's modular runtime helpers",
   "license": "MIT",
   "type": "commonjs",
+  "exports": false,
   "publishConfig": {
     "access": "public"
   },

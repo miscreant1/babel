@@ -6,6 +6,7 @@
   "homepage": "https://babeljs.io/",
   "license": "MIT",
   "type": "commonjs",
+  "exports": false,
   "private": true,
   "repository": "https://github.com/babel/babel/tree/master/eslint/babel-eslint-config-internal",
   "main": "lib/index.js",

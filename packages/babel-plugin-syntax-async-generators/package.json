@@ -5,6 +5,7 @@
   "repository": "https://github.com/babel/babel/tree/master/packages/babel-plugin-syntax-async-generators",
   "license": "MIT",
   "type": "commonjs",
+  "exports": false,
   "publishConfig": {
     "access": "public"
   },
