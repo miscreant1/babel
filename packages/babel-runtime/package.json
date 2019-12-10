@@ -18,5 +18,12 @@
   },
   "devDependencies": {
     "@babel/helpers": "^7.7.4"
+  },
+  "exports": {
+    "./": "./",
+    "./helpers/": "./helpers/",
+    "./helpers/esm/": "./helpers/esm/",
+    "./regenerator": "./regenerator/index.js",
+    "./regenerator/": "./regenerator/"
   }
 }
