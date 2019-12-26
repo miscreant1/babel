@@ -17,7 +17,8 @@
   ],
   "dependencies": {
     "@babel/helper-plugin-utils": "^7.8.3",
-    "@babel/plugin-transform-flow-strip-types": "^7.8.3"
+    "@babel/plugin-transform-flow-strip-types": "^7.8.3",
+    "levenary": "^1.1.0"
   },
   "peerDependencies": {
     "@babel/core": "^7.0.0-0"
