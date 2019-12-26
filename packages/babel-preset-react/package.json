@@ -15,7 +15,8 @@
     "@babel/plugin-transform-react-display-name": "^7.8.3",
     "@babel/plugin-transform-react-jsx": "^7.8.3",
     "@babel/plugin-transform-react-jsx-self": "^7.8.3",
-    "@babel/plugin-transform-react-jsx-source": "^7.8.3"
+    "@babel/plugin-transform-react-jsx-source": "^7.8.3",
+    "levenary": "^1.1.0"
   },
   "peerDependencies": {
     "@babel/core": "^7.0.0-0"
