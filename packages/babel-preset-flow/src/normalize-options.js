@@ -28,7 +28,7 @@ const validateBoolOption = (
     value = defaultValue;
   }
 
-  if (typeof value !== "boolean") {
+  if (typeof value !== "boolean" && typeof value !== "undefined") {
     throw new Error(`${PACKAGE_NAME}: '${name}' option must be a boolean.`);
   }
 

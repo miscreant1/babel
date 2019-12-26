@@ -28,7 +28,7 @@ export const validateBoolOption = (
     value = defaultValue;
   }
 
-  if (typeof value !== "boolean") {
+  if (typeof value !== "boolean" && typeof value !== "undefined") {
     throw new Error(`${PACKAGE_NAME}: '${name}' option must be a boolean.`);
   }
 
@@ -44,7 +44,7 @@ export const validateStringOption = (
     value = defaultValue;
   }
 
-  if (typeof value !== "string") {
+  if (typeof value !== "string" && typeof value !== "undefined") {
     throw new Error(`${PACKAGE_NAME}: '${name}' option must be a string.`);
   }
 
