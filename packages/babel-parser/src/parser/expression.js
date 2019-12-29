@@ -644,7 +644,7 @@ export default class ExpressionParser extends LValParser {
           state.maybeAsyncArrow,
           base.type === "Import",
           base.type !== "Super",
-          node,
+          state.maybeAsyncArrow ? node : undefined,
         );
       }
       this.finishCallExpression(node, state.optionalChainMember);
