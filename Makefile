@@ -33,7 +33,7 @@ build-bundle: clean clean-lib
 	$(MAKE) build-typings
 	$(MAKE) build-dist
 
-build-bundle-ci: bootstrap-only
+build-ci: bootstrap-only
 	$(MAKE) build-bundle
 
 generate-standalone:
@@ -97,7 +97,7 @@ code-quality: flow lint
 flow:
 	$(YARN) flow check --strip-root
 
-bootstrap-flowcheck: bootstrap-only
+bootstrap-flowcheck:
 	$(YARN) gulp build-babel-types
 	$(MAKE) build-typings
 
@@ -165,7 +165,7 @@ bootstrap-flow:
 test-flow:
 	$(NODE) scripts/parser-tests/flow
 
-test-flow-ci: build-bundle-ci bootstrap-flow
+test-flow-ci: bootstrap-flow
 	$(MAKE) test-flow
 
 test-flow-update-whitelist:
@@ -180,7 +180,7 @@ bootstrap-typescript:
 test-typescript:
 	$(NODE) scripts/parser-tests/typescript
 
-test-typescript-ci: build-bundle-ci bootstrap-typescript
+test-typescript-ci: bootstrap-typescript
 	$(MAKE) test-typescript
 
 test-typescript-update-whitelist:
@@ -195,7 +195,7 @@ bootstrap-test262:
 test-test262:
 	$(NODE) scripts/parser-tests/test262
 
-test-test262-ci: build-bundle-ci bootstrap-test262
+test-test262-ci: bootstrap-test262
 	$(MAKE) test-test262
 
 test-test262-update-whitelist:
