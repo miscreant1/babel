@@ -33,7 +33,7 @@ build-bundle: clean clean-lib
 	$(MAKE) build-typings
 	$(MAKE) build-dist
 
-build-ci: bootstrap-only
+build-ci:
 	$(MAKE) build-bundle
 
 generate-standalone:
@@ -52,7 +52,7 @@ build-typescript-typings:
 
 build-standalone: build-babel-standalone build-preset-env-standalone
 
-build-standalone-ci: build-bundle-ci
+build-standalone-ci: build-ci
 	$(MAKE) build-standalone
 
 build-babel-standalone:
@@ -145,7 +145,7 @@ test: lint test-only
 
 test-ci: jest-ci
 
-jest-ci: build-standalone-ci
+jest-ci:
 	BABEL_ENV=test $(YARN) jest --maxWorkers=4 --ci
 	$(MAKE) test-clean
 

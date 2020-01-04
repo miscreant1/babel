@@ -62,12 +62,52 @@ jobs:
       git:
         clone: false
     - stage: Tests
-      name: Unit Tests
+      name: Unit Tests on Node.js 12
       workspaces:
         use:
           - built
       git:
         clone: false
+      script: make -j test-ci
+      node_js: "12"
+    - name: Unit Tests on Windows
+      workspaces:
+        use:
+          - built
+      git:
+        clone: false
+      script: make -j test-ci
+      node_js: "node"
+      os: windows
+      cache:
+        yarn: true
+        directories:
+          - $HOME/AppData/Local/Temp/chocolatey
+      before_script: choco install make
+    - name: Unit Tests on Node.js 10
+      workspaces:
+        use:
+          - built
+      git:
+        clone: false
+      script: make -j test-ci
+      node_js: "10"
+    - name: Unit Tests on Node.js 8
+      workspaces:
+        use:
+          - built
+      git:
+        clone: false
+      script: make -j test-ci
+      node_js: "8"
+    - name: Unit Tests on Node.js 6
+      workspaces:
+        use:
+          - built
+      git:
+        clone: false
+      script: make -j test-ci
+      node_js: "6"
     - name: "Parser Flow Tests"
       node_js: "node"
       workspaces:
