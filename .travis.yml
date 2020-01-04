@@ -36,14 +36,15 @@ jobs:
   include:
     - stage: Install Dependencies
       node_js: "node"
-      script: make -j bootstrap-only
+      script: skip
+#      script: make -j bootstrap-only
       cache:
         yarn: true
       workspaces:
         create:
           name: "unbuilt"
           paths:
-            - $HOME/babel
+            - ./
     - stage: Lint And Build
       name: Lint
       node_js: "node"
@@ -52,7 +53,7 @@ jobs:
           - unbuilt
       git:
         clone: false
-      script: make -j code-quality-ci
+      script: ls -l
     - name: Build
       node_js: "node"
       script: make -j build-ci
@@ -62,7 +63,7 @@ jobs:
         create:
           name: "built"
           paths:
-            - $HOME/babel
+            - ./
       git:
         clone: false
     - stage: Tests
