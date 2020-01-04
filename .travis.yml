@@ -9,6 +9,7 @@ env:
     - PATH=$HOME/.yarn/bin:$PATH
 
 install: skip
+script: make -j test-ci
 
 matrix:
   fast_finish: true
@@ -38,16 +39,28 @@ jobs:
       script: make -j bootstrap-only
       cache:
         yarn: true
+      workspaces:
+        create:
+         name: "unbuilt"
     - stage: Lint And Build
       name: Lint
       node_js: "node"
+      workspaces:
+        use:
+          - unbuilt
+      git:
+        clone: false
       script: make -j code-quality-ci
     - name: Build
       node_js: "node"
       script: make -j build-ci
       workspaces:
+        use:
+          - unbuilt
         create:
           name: "built"
+      git:
+        clone: false
     - stage: Tests
       name: Unit Tests
       workspaces:
@@ -55,7 +68,6 @@ jobs:
           - built
       git:
         clone: false
-      script: make -j test-ci
     - name: "Parser Flow Tests"
       node_js: "node"
       workspaces:
