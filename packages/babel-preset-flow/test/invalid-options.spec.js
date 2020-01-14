@@ -1,21 +1,21 @@
-import { transform } from "@babel/core";
+import { loadOptions } from "@babel/core";
 import presetFlow from "..";
 
-function transformFlowWithOptions(source: string, options: any) {
-  transform(source, {
-    filename: "test.js",
+function loadPresetWithOptions(options: any) {
+  loadOptions({
+    filename: "/fake/test.js",
     presets: [[presetFlow, options]],
   });
 }
 describe("preset-flow", () => {
   it("should throw when top level options are invalid", () => {
     expect(() => {
-      transformFlowWithOptions("", { All: true });
+      loadPresetWithOptions({ All: true });
     }).toThrowErrorMatchingSnapshot();
   });
   it("should throw when boolean options are not provided with boolean values", () => {
     expect(() => {
-      transformFlowWithOptions("", { all: "true" });
+      loadPresetWithOptions({ all: "true" });
     }).toThrowErrorMatchingSnapshot();
   });
 });
