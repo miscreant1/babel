@@ -12,7 +12,7 @@ const validateTopLevelOptions = (options: Options) => {
   for (const option in options) {
     if (!TopLevelOptions[option]) {
       throw new Error(
-        `${PACKAGE_NAME}: ${option} is not a valid top-level option.\n` +
+        `${PACKAGE_NAME}: '${option}' is not a valid top-level option.\n` +
           `Maybe you meant to use '${findSuggestion(option, validOptions)}'?`,
       );
     }
