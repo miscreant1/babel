@@ -1,197 +1,181 @@
 @babel/preset-env: `DEBUG` option
 
 Using targets:
-{}
+{
+  "android": "80",
+  "chrome": "79",
+  "edge": "18",
+  "firefox": "68",
+  "ie": "11",
+  "ios": "12.2",
+  "opera": "66",
+  "safari": "12.1",
+  "samsung": "10.1"
+}
 
 Using modules transform: auto
 
 Using plugins:
-  proposal-numeric-separator {}
-  proposal-nullish-coalescing-operator {}
-  proposal-optional-chaining {}
-  proposal-json-strings {}
-  proposal-optional-catch-binding {}
-  transform-parameters {}
-  proposal-async-generator-functions {}
-  proposal-object-rest-spread {}
-  transform-dotall-regex {}
-  proposal-unicode-property-regex {}
-  transform-named-capturing-groups-regex {}
-  transform-async-to-generator {}
-  transform-exponentiation-operator {}
-  transform-template-literals {}
-  transform-literals {}
-  transform-function-name {}
-  transform-arrow-functions {}
-  transform-block-scoped-functions {}
-  transform-classes {}
-  transform-object-super {}
-  transform-shorthand-properties {}
-  transform-duplicate-keys {}
-  transform-computed-properties {}
-  transform-for-of {}
-  transform-sticky-regex {}
-  transform-unicode-regex {}
-  transform-spread {}
-  transform-destructuring {}
-  transform-block-scoping {}
-  transform-typeof-symbol {}
-  transform-new-target {}
-  transform-regenerator {}
-  transform-member-expression-literals {}
-  transform-property-literals {}
-  transform-reserved-words {}
-  transform-modules-commonjs {}
-  proposal-dynamic-import {}
+  proposal-numeric-separator { "edge":"18", "firefox":"68", "ie":"11", "ios":"12.2", "safari":"12.1", "samsung":"10.1" }
+  proposal-nullish-coalescing-operator { "chrome":"79", "edge":"18", "firefox":"68", "ie":"11", "ios":"12.2", "opera":"66", "safari":"12.1", "samsung":"10.1" }
+  proposal-optional-chaining { "chrome":"79", "edge":"18", "firefox":"68", "ie":"11", "ios":"12.2", "opera":"66", "safari":"12.1", "samsung":"10.1" }
+  proposal-json-strings { "edge":"18", "ie":"11" }
+  proposal-optional-catch-binding { "edge":"18", "ie":"11" }
+  transform-parameters { "ie":"11" }
+  proposal-async-generator-functions { "edge":"18", "ie":"11" }
+  proposal-object-rest-spread { "edge":"18", "ie":"11" }
+  transform-dotall-regex { "edge":"18", "firefox":"68", "ie":"11" }
+  proposal-unicode-property-regex { "edge":"18", "firefox":"68", "ie":"11" }
+  transform-named-capturing-groups-regex { "edge":"18", "firefox":"68", "ie":"11" }
+  transform-async-to-generator { "ie":"11" }
+  transform-exponentiation-operator { "ie":"11" }
+  transform-template-literals { "ie":"11", "ios":"12.2", "safari":"12.1" }
+  transform-literals { "ie":"11" }
+  transform-function-name { "edge":"18", "ie":"11" }
+  transform-arrow-functions { "ie":"11" }
+  transform-classes { "ie":"11" }
+  transform-object-super { "ie":"11" }
+  transform-shorthand-properties { "ie":"11" }
+  transform-duplicate-keys { "ie":"11" }
+  transform-computed-properties { "ie":"11" }
+  transform-for-of { "ie":"11" }
+  transform-sticky-regex { "ie":"11" }
+  transform-unicode-regex { "ie":"11" }
+  transform-spread { "ie":"11" }
+  transform-destructuring { "ie":"11" }
+  transform-block-scoping { "ie":"11" }
+  transform-typeof-symbol { "ie":"11" }
+  transform-new-target { "ie":"11" }
+  transform-regenerator { "ie":"11" }
+  transform-modules-commonjs { "android":"80", "chrome":"79", "edge":"18", "firefox":"68", "ie":"11", "ios":"12.2", "opera":"66", "safari":"12.1", "samsung":"10.1" }
+  proposal-dynamic-import { "android":"80", "chrome":"79", "edge":"18", "firefox":"68", "ie":"11", "ios":"12.2", "opera":"66", "safari":"12.1", "samsung":"10.1" }
 
 Using polyfills with `entry` option:
 
 [<CWD>/packages/babel-preset-env/test/fixtures/debug/entry-no-corejs-shippedProposals/input.mjs] Replaced @babel/polyfill entries with the following polyfills:
-  es6.array.copy-within {}
-  es6.array.every {}
-  es6.array.fill {}
-  es6.array.filter {}
-  es6.array.find {}
-  es6.array.find-index {}
-  es7.array.flat-map {}
-  es6.array.for-each {}
-  es6.array.from {}
-  es7.array.includes {}
-  es6.array.index-of {}
-  es6.array.is-array {}
-  es6.array.iterator {}
-  es6.array.last-index-of {}
-  es6.array.map {}
-  es6.array.of {}
-  es6.array.reduce {}
-  es6.array.reduce-right {}
-  es6.array.some {}
-  es6.array.sort {}
-  es6.array.species {}
-  es6.date.now {}
-  es6.date.to-iso-string {}
-  es6.date.to-json {}
-  es6.date.to-primitive {}
-  es6.date.to-string {}
-  es6.function.bind {}
-  es6.function.has-instance {}
-  es6.function.name {}
-  es6.map {}
-  es6.math.acosh {}
-  es6.math.asinh {}
-  es6.math.atanh {}
-  es6.math.cbrt {}
-  es6.math.clz32 {}
-  es6.math.cosh {}
-  es6.math.expm1 {}
-  es6.math.fround {}
-  es6.math.hypot {}
-  es6.math.imul {}
-  es6.math.log1p {}
-  es6.math.log10 {}
-  es6.math.log2 {}
-  es6.math.sign {}
-  es6.math.sinh {}
-  es6.math.tanh {}
-  es6.math.trunc {}
-  es6.number.constructor {}
-  es6.number.epsilon {}
-  es6.number.is-finite {}
-  es6.number.is-integer {}
-  es6.number.is-nan {}
-  es6.number.is-safe-integer {}
-  es6.number.max-safe-integer {}
-  es6.number.min-safe-integer {}
-  es6.number.parse-float {}
-  es6.number.parse-int {}
-  es6.object.assign {}
-  es6.object.create {}
-  es7.object.define-getter {}
-  es7.object.define-setter {}
-  es6.object.define-property {}
-  es6.object.define-properties {}
-  es7.object.entries {}
-  es6.object.freeze {}
-  es6.object.get-own-property-descriptor {}
-  es7.object.get-own-property-descriptors {}
-  es6.object.get-own-property-names {}
-  es6.object.get-prototype-of {}
-  es7.object.lookup-getter {}
-  es7.object.lookup-setter {}
-  es6.object.prevent-extensions {}
-  es6.object.to-string {}
-  es6.object.is {}
-  es6.object.is-frozen {}
-  es6.object.is-sealed {}
-  es6.object.is-extensible {}
-  es6.object.keys {}
-  es6.object.seal {}
-  es6.object.set-prototype-of {}
-  es7.object.values {}
-  es6.promise {}
-  es7.promise.finally {}
-  es6.reflect.apply {}
-  es6.reflect.construct {}
-  es6.reflect.define-property {}
-  es6.reflect.delete-property {}
-  es6.reflect.get {}
-  es6.reflect.get-own-property-descriptor {}
-  es6.reflect.get-prototype-of {}
-  es6.reflect.has {}
-  es6.reflect.is-extensible {}
-  es6.reflect.own-keys {}
-  es6.reflect.prevent-extensions {}
-  es6.reflect.set {}
-  es6.reflect.set-prototype-of {}
-  es6.regexp.constructor {}
-  es6.regexp.flags {}
-  es6.regexp.match {}
-  es6.regexp.replace {}
-  es6.regexp.split {}
-  es6.regexp.search {}
-  es6.regexp.to-string {}
-  es6.set {}
-  es6.symbol {}
-  es7.symbol.async-iterator {}
-  es6.string.anchor {}
-  es6.string.big {}
-  es6.string.blink {}
-  es6.string.bold {}
-  es6.string.code-point-at {}
-  es6.string.ends-with {}
-  es6.string.fixed {}
-  es6.string.fontcolor {}
-  es6.string.fontsize {}
-  es6.string.from-code-point {}
-  es6.string.includes {}
-  es6.string.italics {}
-  es6.string.iterator {}
-  es6.string.link {}
-  es7.string.pad-start {}
-  es7.string.pad-end {}
-  es6.string.raw {}
-  es6.string.repeat {}
-  es6.string.small {}
-  es6.string.starts-with {}
-  es6.string.strike {}
-  es6.string.sub {}
-  es6.string.sup {}
-  es6.string.trim {}
-  es7.string.trim-left {}
-  es7.string.trim-right {}
-  es6.typed.array-buffer {}
-  es6.typed.data-view {}
-  es6.typed.int8-array {}
-  es6.typed.uint8-array {}
-  es6.typed.uint8-clamped-array {}
-  es6.typed.int16-array {}
-  es6.typed.uint16-array {}
-  es6.typed.int32-array {}
-  es6.typed.uint32-array {}
-  es6.typed.float32-array {}
-  es6.typed.float64-array {}
-  es6.weak-map {}
-  es6.weak-set {}
-  web.timers {}
-  web.immediate {}
-  web.dom.iterable {}
+  es6.array.copy-within { "ie":"11" }
+  es6.array.fill { "ie":"11" }
+  es6.array.find { "ie":"11" }
+  es6.array.find-index { "ie":"11" }
+  es7.array.flat-map { "edge":"18", "ie":"11" }
+  es6.array.from { "ie":"11" }
+  es7.array.includes { "ie":"11" }
+  es6.array.iterator { "ie":"11" }
+  es6.array.of { "ie":"11" }
+  es6.array.species { "ie":"11" }
+  es6.date.to-primitive { "ie":"11" }
+  es6.function.has-instance { "ie":"11" }
+  es6.function.name { "ie":"11" }
+  es6.map { "ie":"11" }
+  es6.math.acosh { "ie":"11" }
+  es6.math.asinh { "ie":"11" }
+  es6.math.atanh { "ie":"11" }
+  es6.math.cbrt { "ie":"11" }
+  es6.math.clz32 { "ie":"11" }
+  es6.math.cosh { "ie":"11" }
+  es6.math.expm1 { "ie":"11" }
+  es6.math.fround { "ie":"11" }
+  es6.math.hypot { "ie":"11" }
+  es6.math.imul { "ie":"11" }
+  es6.math.log1p { "ie":"11" }
+  es6.math.log10 { "ie":"11" }
+  es6.math.log2 { "ie":"11" }
+  es6.math.sign { "ie":"11" }
+  es6.math.sinh { "ie":"11" }
+  es6.math.tanh { "ie":"11" }
+  es6.math.trunc { "ie":"11" }
+  es6.number.constructor { "ie":"11" }
+  es6.number.epsilon { "ie":"11" }
+  es6.number.is-finite { "ie":"11" }
+  es6.number.is-integer { "ie":"11" }
+  es6.number.is-nan { "ie":"11" }
+  es6.number.is-safe-integer { "ie":"11" }
+  es6.number.max-safe-integer { "ie":"11" }
+  es6.number.min-safe-integer { "ie":"11" }
+  es6.number.parse-float { "ie":"11" }
+  es6.number.parse-int { "ie":"11" }
+  es6.object.assign { "ie":"11" }
+  es7.object.define-getter { "ie":"11" }
+  es7.object.define-setter { "ie":"11" }
+  es7.object.entries { "ie":"11" }
+  es6.object.freeze { "ie":"11" }
+  es6.object.get-own-property-descriptor { "ie":"11" }
+  es7.object.get-own-property-descriptors { "ie":"11" }
+  es6.object.get-own-property-names { "ie":"11" }
+  es6.object.get-prototype-of { "ie":"11" }
+  es7.object.lookup-getter { "edge":"18", "ie":"11" }
+  es7.object.lookup-setter { "edge":"18", "ie":"11" }
+  es6.object.prevent-extensions { "ie":"11" }
+  es6.object.to-string { "ie":"11" }
+  es6.object.is { "ie":"11" }
+  es6.object.is-frozen { "ie":"11" }
+  es6.object.is-sealed { "ie":"11" }
+  es6.object.is-extensible { "ie":"11" }
+  es6.object.keys { "ie":"11" }
+  es6.object.seal { "ie":"11" }
+  es7.object.values { "ie":"11" }
+  es6.promise { "ie":"11" }
+  es7.promise.finally { "ie":"11" }
+  es6.reflect.apply { "ie":"11" }
+  es6.reflect.construct { "ie":"11" }
+  es6.reflect.define-property { "ie":"11" }
+  es6.reflect.delete-property { "ie":"11" }
+  es6.reflect.get { "ie":"11" }
+  es6.reflect.get-own-property-descriptor { "ie":"11" }
+  es6.reflect.get-prototype-of { "ie":"11" }
+  es6.reflect.has { "ie":"11" }
+  es6.reflect.is-extensible { "ie":"11" }
+  es6.reflect.own-keys { "ie":"11" }
+  es6.reflect.prevent-extensions { "ie":"11" }
+  es6.reflect.set { "ie":"11" }
+  es6.reflect.set-prototype-of { "ie":"11" }
+  es6.regexp.constructor { "edge":"18", "ie":"11" }
+  es6.regexp.flags { "edge":"18", "ie":"11" }
+  es6.regexp.match { "edge":"18", "ie":"11" }
+  es6.regexp.replace { "edge":"18", "ie":"11" }
+  es6.regexp.split { "edge":"18", "ie":"11" }
+  es6.regexp.search { "edge":"18", "ie":"11" }
+  es6.regexp.to-string { "edge":"18", "ie":"11" }
+  es6.set { "ie":"11" }
+  es6.symbol { "edge":"18", "ie":"11" }
+  es7.symbol.async-iterator { "edge":"18", "ie":"11" }
+  es6.string.anchor { "ie":"11" }
+  es6.string.big { "ie":"11" }
+  es6.string.blink { "ie":"11" }
+  es6.string.bold { "ie":"11" }
+  es6.string.code-point-at { "ie":"11" }
+  es6.string.ends-with { "ie":"11" }
+  es6.string.fixed { "ie":"11" }
+  es6.string.fontcolor { "ie":"11" }
+  es6.string.fontsize { "ie":"11" }
+  es6.string.from-code-point { "ie":"11" }
+  es6.string.includes { "ie":"11" }
+  es6.string.italics { "ie":"11" }
+  es6.string.iterator { "ie":"11" }
+  es6.string.link { "ie":"11" }
+  es7.string.pad-start { "ie":"11" }
+  es7.string.pad-end { "ie":"11" }
+  es6.string.raw { "ie":"11" }
+  es6.string.repeat { "ie":"11" }
+  es6.string.small { "ie":"11" }
+  es6.string.starts-with { "ie":"11" }
+  es6.string.strike { "ie":"11" }
+  es6.string.sub { "ie":"11" }
+  es6.string.sup { "ie":"11" }
+  es7.string.trim-left { "edge":"18", "ie":"11" }
+  es7.string.trim-right { "edge":"18", "ie":"11" }
+  es6.typed.array-buffer { "ie":"11" }
+  es6.typed.int8-array { "ie":"11" }
+  es6.typed.uint8-array { "ie":"11" }
+  es6.typed.uint8-clamped-array { "ie":"11" }
+  es6.typed.int16-array { "ie":"11" }
+  es6.typed.uint16-array { "ie":"11" }
+  es6.typed.int32-array { "ie":"11" }
+  es6.typed.uint32-array { "ie":"11" }
+  es6.typed.float32-array { "ie":"11" }
+  es6.typed.float64-array { "ie":"11" }
+  es6.weak-map { "ie":"11" }
+  es6.weak-set { "ie":"11" }
+  web.timers { "android":"80", "chrome":"79", "edge":"18", "firefox":"68", "ie":"11", "ios":"12.2", "opera":"66", "safari":"12.1", "samsung":"10.1" }
+  web.immediate { "android":"80", "chrome":"79", "edge":"18", "firefox":"68", "ie":"11", "ios":"12.2", "opera":"66", "safari":"12.1", "samsung":"10.1" }
+  web.dom.iterable { "android":"80", "chrome":"79", "edge":"18", "firefox":"68", "ie":"11", "ios":"12.2", "opera":"66", "safari":"12.1", "samsung":"10.1" }

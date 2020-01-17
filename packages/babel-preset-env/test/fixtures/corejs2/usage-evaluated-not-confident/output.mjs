@@ -1,4 +1,3 @@
-import "core-js/modules/es6.array.map";
 import "core-js/modules/web.dom.iterable";
 import "core-js/modules/es6.array.iterator";
 import "core-js/modules/es6.object.to-string";

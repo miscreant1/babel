@@ -1,10 +1,6 @@
 require("core-js/modules/es6.array.copy-within");
 
-require("core-js/modules/es6.array.every");
-
 require("core-js/modules/es6.array.fill");
-
-require("core-js/modules/es6.array.filter");
 
 require("core-js/modules/es6.array.find");
 
@@ -12,45 +8,17 @@ require("core-js/modules/es6.array.find-index");
 
 require("core-js/modules/es7.array.flat-map");
 
-require("core-js/modules/es6.array.for-each");
-
 require("core-js/modules/es6.array.from");
 
 require("core-js/modules/es7.array.includes");
 
-require("core-js/modules/es6.array.index-of");
-
-require("core-js/modules/es6.array.is-array");
-
 require("core-js/modules/es6.array.iterator");
-
-require("core-js/modules/es6.array.last-index-of");
-
-require("core-js/modules/es6.array.map");
 
 require("core-js/modules/es6.array.of");
 
-require("core-js/modules/es6.array.reduce");
-
-require("core-js/modules/es6.array.reduce-right");
-
-require("core-js/modules/es6.array.some");
-
-require("core-js/modules/es6.array.sort");
-
 require("core-js/modules/es6.array.species");
 
-require("core-js/modules/es6.date.now");
-
-require("core-js/modules/es6.date.to-iso-string");
-
-require("core-js/modules/es6.date.to-json");
-
 require("core-js/modules/es6.date.to-primitive");
-
-require("core-js/modules/es6.date.to-string");
-
-require("core-js/modules/es6.function.bind");
 
 require("core-js/modules/es6.function.has-instance");
 
@@ -114,15 +82,9 @@ require("core-js/modules/es6.number.parse-int");
 
 require("core-js/modules/es6.object.assign");
 
-require("core-js/modules/es6.object.create");
-
 require("core-js/modules/es7.object.define-getter");
 
 require("core-js/modules/es7.object.define-setter");
-
-require("core-js/modules/es6.object.define-property");
-
-require("core-js/modules/es6.object.define-properties");
 
 require("core-js/modules/es7.object.entries");
 
@@ -155,8 +117,6 @@ require("core-js/modules/es6.object.is-extensible");
 require("core-js/modules/es6.object.keys");
 
 require("core-js/modules/es6.object.seal");
-
-require("core-js/modules/es6.object.set-prototype-of");
 
 require("core-js/modules/es7.object.values");
 
@@ -256,15 +216,11 @@ require("core-js/modules/es6.string.sub");
 
 require("core-js/modules/es6.string.sup");
 
-require("core-js/modules/es6.string.trim");
-
 require("core-js/modules/es7.string.trim-left");
 
 require("core-js/modules/es7.string.trim-right");
 
 require("core-js/modules/es6.typed.array-buffer");
-
-require("core-js/modules/es6.typed.data-view");
 
 require("core-js/modules/es6.typed.int8-array");
 
@@ -310,15 +266,15 @@ function _awaitAsyncGenerator(value) { return new _AwaitValue(value); }
 
 function _wrapAsyncGenerator(fn) { return function () { return new _AsyncGenerator(fn.apply(this, arguments)); }; }
 
-function _AsyncGenerator(gen) { var front, back; function send(key, arg) { return new Promise(function (resolve, reject) { var request = { key: key, arg: arg, resolve: resolve, reject: reject, next: null }; if (back) { back = back.next = request; } else { front = back = request; resume(key, arg); } }); } function resume(key, arg) { try { var result = gen[key](arg); var value = result.value; var wrappedAwait = value instanceof _AwaitValue; Promise.resolve(wrappedAwait ? value.wrapped : value).then(function (arg) { if (wrappedAwait) { resume(key === "return" ? "return" : "next", arg); return; } settle(result.done ? "return" : "normal", arg); }, function (err) { resume("throw", err); }); } catch (err) { settle("throw", err); } } function settle(type, value) { switch (type) { case "return": front.resolve({ value: value, done: true }); break; case "throw": front.reject(value); break; default: front.resolve({ value: value, done: false }); break; } front = front.next; if (front) { resume(front.key, front.arg); } else { back = null; } } this._invoke = send; if (typeof gen["return"] !== "function") { this["return"] = undefined; } }
+function _AsyncGenerator(gen) { var front, back; function send(key, arg) { return new Promise(function (resolve, reject) { var request = { key: key, arg: arg, resolve: resolve, reject: reject, next: null }; if (back) { back = back.next = request; } else { front = back = request; resume(key, arg); } }); } function resume(key, arg) { try { var result = gen[key](arg); var value = result.value; var wrappedAwait = value instanceof _AwaitValue; Promise.resolve(wrappedAwait ? value.wrapped : value).then(function (arg) { if (wrappedAwait) { resume(key === "return" ? "return" : "next", arg); return; } settle(result.done ? "return" : "normal", arg); }, function (err) { resume("throw", err); }); } catch (err) { settle("throw", err); } } function settle(type, value) { switch (type) { case "return": front.resolve({ value: value, done: true }); break; case "throw": front.reject(value); break; default: front.resolve({ value: value, done: false }); break; } front = front.next; if (front) { resume(front.key, front.arg); } else { back = null; } } this._invoke = send; if (typeof gen.return !== "function") { this.return = undefined; } }
 
 if (typeof Symbol === "function" && Symbol.asyncIterator) { _AsyncGenerator.prototype[Symbol.asyncIterator] = function () { return this; }; }
 
 _AsyncGenerator.prototype.next = function (arg) { return this._invoke("next", arg); };
 
-_AsyncGenerator.prototype["throw"] = function (arg) { return this._invoke("throw", arg); };
+_AsyncGenerator.prototype.throw = function (arg) { return this._invoke("throw", arg); };
 
-_AsyncGenerator.prototype["return"] = function (arg) { return this._invoke("return", arg); };
+_AsyncGenerator.prototype.return = function (arg) { return this._invoke("return", arg); };
 
 function _AwaitValue(value) { this.wrapped = value; }
 
