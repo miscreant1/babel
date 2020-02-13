@@ -156,82 +156,26 @@ You can turn on the 'throwIfNamespace' flag to bypass this warning.`,
     return state.call || t.callExpression(state.callee, args);
   }
 
-  function pushProps(_props, objs) {
-    if (!_props.length) return _props;
-
-    objs.push(t.objectExpression(_props));
-    return [];
-  }
-
-  /**
-   * The logic for this is quite terse. It's because we need to
-   * support spread elements. We loop over all attributes,
-   * breaking on spreads, we then push a new object containing
-   * all prior attributes to an array for later processing.
-   */
-
   function buildOpeningElementAttributes(attribs, file) {
-    let _props = [];
-    const objs = [];
-
-    const { useSpread = false } = file.opts;
-    if (typeof useSpread !== "boolean") {
-      throw new Error(
-        "transform-react-jsx currently only accepts a boolean option for " +
-          "useSpread (defaults to false)",
+    if ("useSpread" in file.opts) {
+      console.warn(
+        "useSpread is always enabled in Babel 8, please remove it from the config.\n" +
+          "- If you need the behavior of `useSpread: false`, please use `@babel/preset-env`\n" +
+          "or `@babel/plugin-proposal-object-rest-spread`",
+      );
+    }
+    if ("useBuiltIns" in file.opts) {
+      console.warn(
+        "useBuiltIns is removed in Babel 8, please remove it from the config.\n" +
+          "- If you need the behavior of `useBuiltIns: true`, please use `@babel/preset-env`\n" +
+          "or `@babel/plugin-proposal-object-rest-spread`\n" +
+          "- If you need the behavior of `useBuiltIns: false`, please use `@babel/preset-env`\n" +
+          "or `@babel/plugin-transform-object-assign`",
       );
     }
 
-    const useBuiltIns = file.opts.useBuiltIns || false;
-    if (typeof useBuiltIns !== "boolean") {
-      throw new Error(
-        "transform-react-jsx currently only accepts a boolean option for " +
-          "useBuiltIns (defaults to false)",
-      );
-    }
-
-    if (useSpread && useBuiltIns) {
-      throw new Error(
-        "transform-react-jsx currently only accepts useBuiltIns or useSpread " +
-          "but not both",
-      );
-    }
-
-    if (useSpread) {
-      const props = attribs.map(convertAttribute);
-      return t.objectExpression(props);
-    }
-
-    while (attribs.length) {
-      const prop = attribs.shift();
-      if (t.isJSXSpreadAttribute(prop)) {
-        _props = pushProps(_props, objs);
-        objs.push(prop.argument);
-      } else {
-        _props.push(convertAttribute(prop));
-      }
-    }
-
-    pushProps(_props, objs);
-
-    if (objs.length === 1) {
-      // only one object
-      attribs = objs[0];
-    } else {
-      // looks like we have multiple objects
-      if (!t.isObjectExpression(objs[0])) {
-        objs.unshift(t.objectExpression([]));
-      }
-
-      const helper = useBuiltIns
-        ? t.memberExpression(t.identifier("Object"), t.identifier("assign"))
-        : file.addHelper("extends");
-
-      // spread it
-      attribs = t.callExpression(helper, objs);
-    }
-
-    return attribs;
+    const props = attribs.map(attrib => convertAttribute(attrib));
+    return t.objectExpression(props);
   }
 
   function buildFragmentCall(path, file) {
