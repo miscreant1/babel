@@ -142,7 +142,7 @@ You can turn on the 'throwIfNamespace' flag to bypass this warning.`,
 
     let attribs = openingPath.node.attributes;
     if (attribs.length) {
-      attribs = buildOpeningElementAttributes(attribs, file);
+      attribs = buildOpeningElementAttributes(attribs);
     } else {
       attribs = t.nullLiteral();
     }
@@ -156,24 +156,7 @@ You can turn on the 'throwIfNamespace' flag to bypass this warning.`,
     return state.call || t.callExpression(state.callee, args);
   }
 
-  function buildOpeningElementAttributes(attribs, file) {
-    if ("useSpread" in file.opts) {
-      console.warn(
-        "useSpread is always enabled in Babel 8, please remove it from the config.\n" +
-          "- If you need the behavior of `useSpread: false`, please use `@babel/preset-env`\n" +
-          "or `@babel/plugin-proposal-object-rest-spread`",
-      );
-    }
-    if ("useBuiltIns" in file.opts) {
-      console.warn(
-        "useBuiltIns is removed in Babel 8, please remove it from the config.\n" +
-          "- If you need the behavior of `useBuiltIns: true`, please use `@babel/preset-env`\n" +
-          "or `@babel/plugin-proposal-object-rest-spread`\n" +
-          "- If you need the behavior of `useBuiltIns: false`, please use `@babel/preset-env`\n" +
-          "or `@babel/plugin-transform-object-assign`",
-      );
-    }
-
+  function buildOpeningElementAttributes(attribs) {
     const props = attribs.map(attrib => convertAttribute(attrib));
     return t.objectExpression(props);
   }

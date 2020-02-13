@@ -15,6 +15,23 @@ export default declare((api, options) => {
   const JSX_ANNOTATION_REGEX = /\*?\s*@jsx\s+([^\s]+)/;
   const JSX_FRAG_ANNOTATION_REGEX = /\*?\s*@jsxFrag\s+([^\s]+)/;
 
+  if ("useSpread" in options) {
+    console.warn(
+      "useSpread is always enabled in Babel 8, please remove it from the config.\n" +
+        "- If you need the behavior of `useSpread: false`, please use `@babel/preset-env`\n" +
+        "or `@babel/plugin-proposal-object-rest-spread`",
+    );
+  }
+  if ("useBuiltIns" in options) {
+    console.warn(
+      "useBuiltIns is removed in Babel 8, please remove it from the config.\n" +
+        "- If you need the behavior of `useBuiltIns: true`, please use `@babel/preset-env`\n" +
+        "or `@babel/plugin-proposal-object-rest-spread`\n" +
+        "- If you need the behavior of `useBuiltIns: false`, please use `@babel/preset-env`\n" +
+        "or `@babel/plugin-transform-object-assign`",
+    );
+  }
+
   // returns a closure that returns an identifier or memberExpression node
   // based on the given id
   const createIdentifierParser = (id: string) => () => {
