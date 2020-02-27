@@ -13,19 +13,22 @@ export default declare((api, opts) => {
     opts.throwIfNamespace === undefined ? true : !!opts.throwIfNamespace;
   const development = !!opts.development;
   if ("useSpread" in opts) {
-    console.warn(
-      "useSpread is always enabled in Babel 8, please remove it from the config.\n" +
-        "- If you need the behavior of `useSpread: false`, please use `@babel/preset-env`\n" +
-        "or `@babel/plugin-proposal-object-rest-spread`",
+    throw new Error(
+      '@babel/preset-react: "useSpread" is always enabled in Babel 8, please remove it from the config.\n',
     );
   }
   if ("useBuiltIns" in opts) {
-    console.warn(
-      "useBuiltIns is removed in Babel 8, please remove it from the config.\n" +
-        "- If you need the behavior of `useBuiltIns: true`, please use `@babel/preset-env`\n" +
-        "or `@babel/plugin-proposal-object-rest-spread`\n" +
-        "- If you need the behavior of `useBuiltIns: false`, please use `@babel/preset-env`\n" +
-        "or `@babel/plugin-transform-object-assign`",
+    const useBuiltInsFormatted = JSON.stringify(opts.useBuiltIns);
+    throw new Error(
+      `@babel/preset-react: "useBuiltIns" is removed in Babel 8, please remove it from the config.
+- Babel 8 now transforms JSX spread to object spread. If you need to transpile object spread with
+\`useBuiltIns: ${useBuiltInsFormatted}\`, please use the following config
+{
+  "plugins": [
+    ["@babel/plugin-proposal-object-rest-spread", { "loose": true, "useBuiltIns": ${useBuiltInsFormatted} }]
+  ],
+  "presets": ["@babel/preset-react"]
+}`,
     );
   }
 
