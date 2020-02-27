@@ -1,1 +1,2 @@
-React.createElement(Foo, bar);
+React.createElement(Foo, { ...bar
+});
