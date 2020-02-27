@@ -1,4 +1,5 @@
-React.createElement(Component, babelHelpers.extends({
+React.createElement(Component, {
   y: 2,
-  z: true
-}, x));
+  z: true,
+  ...x
+});
