@@ -4,4 +4,5 @@ export const TopLevelOptions = {
   allowNamespaces: "allowNamespaces",
   isTSX: "isTSX",
   jsxPragma: "jsxPragma",
+  onlyRemoveTypeImports: "onlyRemoveTypeImports",
 };

@@ -5,14 +5,19 @@ import normalizeOptions from "./normalize-options";
 export default declare((api, opts) => {
   api.assertVersion(7);
 
-  const { jsxPragma, allExtensions, isTSX, allowNamespaces } = normalizeOptions(
-    opts,
-  );
+  const {
+    jsxPragma,
+    allExtensions,
+    isTSX,
+    allowNamespaces,
+    onlyRemoveTypeImports,
+  } = normalizeOptions(opts);
 
   const pluginOptions = isTSX => ({
     jsxPragma,
     isTSX,
     allowNamespaces,
+    onlyRemoveTypeImports,
   });
 
   return {

@@ -4,4 +4,5 @@ export type Options = {
   allowNamespaces: ?boolean,
   isTSX: boolean,
   jsxPragma: ?string,
+  onlyRemoveTypeImports: ?boolean,
 };

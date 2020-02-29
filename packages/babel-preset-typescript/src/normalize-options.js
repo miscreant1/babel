@@ -77,6 +77,11 @@ export default function normalizeOptions(opts: Object): Options {
       opts.jsxPragma,
       undefined,
     ),
+    onlyRemoveTypeImports: validateBoolOption(
+      TopLevelOptions.onlyRemoveTypeImports,
+      opts.onlyRemoveTypeImports,
+      undefined,
+    ),
   };
   validateConstraints(normalized);
   return normalized;
