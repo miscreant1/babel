@@ -66,11 +66,6 @@ export default function normalizeOptions(opts: Object): Options {
       opts.allExtensions,
       false,
     ),
-    allowDeclareFields: validateBoolOption(
-      TopLevelOptions.allowDeclareFields,
-      opts.allowDeclareFields,
-      undefined,
-    ),
     allowNamespaces: validateBoolOption(
       TopLevelOptions.allowNamespaces,
       opts.allowNamespaces,
