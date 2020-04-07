@@ -132,17 +132,42 @@ export default declare((api, opts) => {
   }
 
   function createObjRefExpression(path, objRef) {
-    let nonStaticDefaultValueDeclarator;
+    let nonStaticDefaultValueMemoised;
     let objRefExpression;
+    let parentRightId;
+    let parentRightInvokeCounterId;
     if (path.parentPath.isAssignmentPattern()) {
-      // { { foo, ...bar } = qux } = quux;
+      // { baz: { foo, ...bar } = qux } = quux;
       const { scope } = path;
       const parentRight = path.parentPath.get("right");
-      const parentRightId = scope.maybeGenerateMemoised(parentRight.node, true);
-      if (parentRightId) {
-        nonStaticDefaultValueDeclarator = t.variableDeclarator(
+      if (
+        path.node.properties.length >= 1 &&
+        !parentRight.isStatic() &&
+        !parentRight.isPure()
+      ) {
+        // generate memoised initializer
+        // _qux = (_temp--, qux())
+        // for
+        // { baz: { foo, ...bar } = qux() } = quux;
+        // where `qux()` will be replaced by `_qux`, `_temp` is an invoking counter
+        // that we use later to determine if we should call `qux()` or use `_qux`
+        parentRightId = scope.generateUidIdentifierBasedOnNode(
+          parentRight.node,
+        );
+        scope.push({ id: parentRightId });
+        parentRightInvokeCounterId = scope.generateUidIdentifier();
+        // initialize `_temp = 1`
+        scope.push({
+          id: parentRightInvokeCounterId,
+          init: t.numericLiteral(1),
+        });
+        nonStaticDefaultValueMemoised = t.assignmentExpression(
+          "=",
           parentRightId,
-          t.cloneNode(parentRight.node),
+          t.sequenceExpression([
+            t.updateExpression("--", parentRightInvokeCounterId),
+            t.cloneNode(parentRight.node),
+          ]),
         );
       }
       const objRefName = scope.generateUidBasedOnNode(objRef, "ref");
@@ -161,14 +186,20 @@ export default declare((api, opts) => {
             scope.buildUndefinedNode(),
           ),
           t.identifier(objRefName),
-          parentRightId ?? t.cloneNode(parentRight.node),
+          parentRightId
+            ? t.conditionalExpression(
+                t.cloneNode(parentRightInvokeCounterId),
+                t.cloneNode(parentRight.node),
+                t.cloneNode(parentRightId),
+              )
+            : t.cloneNode(parentRight.node),
         ),
       ]);
     } else {
       objRefExpression = t.cloneNode(objRef);
     }
     return {
-      nonStaticDefaultValueDeclarator,
+      nonStaticDefaultValueMemoised,
       objRefExpression,
     };
   }
@@ -188,13 +219,13 @@ export default declare((api, opts) => {
     const { keys, allLiteral } = extractNormalizedKeys(path);
     const {
       objRefExpression,
-      nonStaticDefaultValueDeclarator,
+      nonStaticDefaultValueMemoised,
     } = createObjRefExpression(path, objRef);
 
     if (keys.length === 0) {
       return [
         impureComputedPropertyDeclarators,
-        nonStaticDefaultValueDeclarator,
+        nonStaticDefaultValueMemoised,
         restElement.argument,
         t.callExpression(getExtendsHelper(file), [
           t.objectExpression([]),
@@ -216,7 +247,7 @@ export default declare((api, opts) => {
 
     return [
       impureComputedPropertyDeclarators,
-      nonStaticDefaultValueDeclarator,
+      nonStaticDefaultValueMemoised,
       restElement.argument,
       t.callExpression(
         file.addHelper(`objectWithoutProperties${loose ? "Loose" : ""}`),
@@ -338,7 +369,7 @@ export default declare((api, opts) => {
 
           const [
             impureComputedPropertyDeclarators,
-            nonStaticDefaultValueDeclarator,
+            nonStaticDefaultValueMemoised,
             argument,
             callExpression,
           ] = createObjectSpread(objectPatternPath, file, ref);
@@ -350,11 +381,10 @@ export default declare((api, opts) => {
           t.assertIdentifier(argument);
 
           const extraDeclarators = impureComputedPropertyDeclarators;
-          if (nonStaticDefaultValueDeclarator) {
-            extraDeclarators.push(nonStaticDefaultValueDeclarator);
+          if (nonStaticDefaultValueMemoised) {
             objectPatternPath.parentPath
               .get("right")
-              .replaceWith(t.cloneNode(nonStaticDefaultValueDeclarator.id));
+              .replaceWith(t.cloneNode(nonStaticDefaultValueMemoised));
           }
 
           insertionPath.insertBefore(extraDeclarators);
@@ -427,17 +457,17 @@ export default declare((api, opts) => {
 
           const [
             impureComputedPropertyDeclarators,
-            nonStaticDefaultValueDeclarator,
+            nonStaticDefaultValueMemoised,
             argument,
             callExpression,
           ] = createObjectSpread(leftPath, file, t.identifier(refName));
 
           const extraDeclarators = impureComputedPropertyDeclarators;
-          if (nonStaticDefaultValueDeclarator) {
+          if (nonStaticDefaultValueMemoised) {
             leftPath.parentPath
               .get("right")
-              .replaceWith(t.cloneNode(nonStaticDefaultValueDeclarator.id));
-            extraDeclarators.push(nonStaticDefaultValueDeclarator);
+              .replaceWith(t.cloneNode(nonStaticDefaultValueMemoised.id));
+            extraDeclarators.push(nonStaticDefaultValueMemoised);
           }
 
           if (extraDeclarators.length > 0) {
