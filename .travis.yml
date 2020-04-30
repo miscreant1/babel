@@ -16,7 +16,7 @@ before_script:
   - if [ "$TRAVIS_OS_NAME" = "windows" ]; then choco install make; fi
 
 script:
-  - if [ "$JOB" = "test" ]; then make -j test-ci; fi
+  - yarn && yarn lerna bootstrap && yarn gulp build-no-bundle && yarn jest --runInBand babel-node babel-cli
   - if [ "$JOB" = "lint" ]; then make -j code-quality-ci; fi
   - if [ "$JOB" = "babel-parser-flow-tests" ]; then make -j test-flow-ci; fi
   - if [ "$JOB" = "babel-parser-typescript-tests" ]; then make -j test-typescript-ci; fi
