@@ -1,0 +1,12 @@
+{
+  "packageRules": [{
+    "packagePatterns": ["."],
+    "excludePackagePatterns": ["^@babel"],
+    "enabled": false
+  }, {
+    "packagePatterns": ["^@babel"],
+    "postUpdateOptions": ["yarnDedupeHighest"],
+    "separateMajorMinor": false,
+    "rangeStrategy": "bump"
+  }]
+}

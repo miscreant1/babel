@@ -19,8 +19,6 @@ if [ -n "$TEST_GREP" ]; then
   jestArgs+=("$TEST_GREP")
 fi
 
-if [ -n "$TEST_ONLY" ]; then
-  jestArgs+=("(packages|codemods|eslint)/.*$TEST_ONLY.*/test")
-fi
+jestArgs+=("babel-node")
 
 $node node_modules/.bin/jest "${jestArgs[@]}"
